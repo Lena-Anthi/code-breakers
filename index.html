@@ -1,14 +1,446 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Breakers | Σπάσε τον κώδικα</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --ink: #121314;
+            --paper: #f2efe7;
+            --acid: #d7f34b;
+            --muted: #6f716d;
+            --line: rgba(18, 19, 20, .16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 5vw;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -.03em;
+        }
+
+        .brand span {
+            color: #798d19;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--ink);
+            text-decoration: none;
+            font: 12px 'DM Mono', monospace;
+        }
+
+        nav a:hover {
+            color: #798d19;
+        }
+
+        .nav-cta,
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--ink);
+            background: var(--acid);
+            text-decoration: none;
+            padding: 13px 17px;
+            font: 500 12px 'DM Mono', monospace;
+            border: 1px solid var(--ink);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .nav-cta:hover,
+        .hero-cta:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .hero {
+            min-height: 660px;
+            padding: 8vw 5vw 7vw;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(125deg, rgba(242, 239, 231, .97) 36%, rgba(242, 239, 231, .52)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=85') center/cover;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            right: 8vw;
+            bottom: -130px;
+            border: 1px solid var(--ink);
+            border-radius: 50%;
+            opacity: .3;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font: 11px 'DM Mono', monospace;
+            color: var(--muted);
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 34px;
+            height: 1px;
+            background: var(--ink);
+        }
+
+        h1 {
+            max-width: 850px;
+            margin: 28px 0 30px;
+            font-size: clamp(58px, 10vw, 144px);
+            line-height: .85;
+            letter-spacing: -.08em;
+            font-weight: 600;
+        }
+
+        h1 em {
+            color: #8ba61d;
+            font-style: normal;
+        }
+
+        .hero-bottom {
+            display: flex;
+            gap: 80px;
+            align-items: end;
+        }
+
+        .hero-copy {
+            max-width: 370px;
+            margin: 0;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .hero-cta {
+            margin-top: 27px;
+        }
+
+        .hero-stamp {
+            margin-left: auto;
+            text-align: center;
+            font: 10px 'DM Mono', monospace;
+            transform: rotate(-10deg);
+        }
+
+        .hero-stamp strong {
+            display: block;
+            margin: 7px;
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+        .ticker {
+            padding: 14px 5vw;
+            color: var(--paper);
+            background: var(--ink);
+            font: 11px 'DM Mono', monospace;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker span {
+            margin-right: 45px;
+            color: var(--acid);
+        }
+
+        .section {
+            padding: 110px 5vw;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 20px;
+            margin-bottom: 38px;
+        }
+
+        .section h2 {
+            margin: 0;
+            max-width: 590px;
+            font-size: clamp(35px, 5vw, 67px);
+            line-height: .95;
+            letter-spacing: -.07em;
+            font-weight: 600;
+        }
+
+        .section-index {
+            font: 12px 'DM Mono', monospace;
+            color: var(--muted);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            min-height: 330px;
+            padding: 25px;
+            border: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: background .25s, color .25s;
+        }
+
+        .card:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .card-number {
+            font: 12px 'DM Mono', monospace;
+            color: #849a20;
+        }
+
+        .card h3 {
+            margin: 50px 0 12px;
+            font-size: 26px;
+            letter-spacing: -.05em;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .card:hover p {
+            color: #bdc0b9;
+        }
+
+        .card-link {
+            font: 11px 'DM Mono', monospace;
+        }
+
+        .manifesto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10vw;
+            color: var(--paper);
+            background: var(--ink);
+        }
+
+        .manifesto .section-index {
+            color: #aeb0a9;
+        }
+
+        .manifesto h2 {
+            color: var(--acid);
+        }
+
+        .manifesto p {
+            max-width: 390px;
+            margin: 0 0 22px;
+            line-height: 1.65;
+            color: #c7c8c1;
+        }
+
+        .principles {
+            border-top: 1px solid #42443e;
+        }
+
+        .principle {
+            display: flex;
+            gap: 25px;
+            padding: 22px 0;
+            border-bottom: 1px solid #42443e;
+            font: 13px 'DM Mono', monospace;
+        }
+
+        .principle b {
+            color: var(--acid);
+            font-weight: 400;
+        }
+
+        footer {
+            padding: 25px 5vw;
+            display: flex;
+            justify-content: space-between;
+            font: 11px 'DM Mono', monospace;
+            border-top: 1px solid var(--line);
+        }
+
+        @media (max-width: 700px) {
+            .topbar {
+                padding: 20px 6vw;
+            }
+
+            nav a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero {
+                min-height: 680px;
+                padding: 23vw 6vw 12vw;
+            }
+
+            h1 {
+                font-size: clamp(57px, 19vw, 100px);
+            }
+
+            .hero-bottom,
+            .manifesto {
+                display: block;
+            }
+
+            .hero-stamp {
+                margin: 80px 0 0;
+                text-align: left;
+                transform: rotate(-5deg);
+            }
+
+            .section {
+                padding: 75px 6vw;
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .section-index {
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                min-height: 250px;
+            }
+
+            .manifesto h2 {
+                margin-bottom: 55px;
+            }
+
+            footer {
+                padding: 20px 6vw;
+                gap: 20px;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <header class="topbar">
+        <div class="brand">CODE <span>/</span> BREAKERS</div>
+        <nav aria-label="Κύρια πλοήγηση">
+            <a href="#about">Η φιλοσοφία</a>
+            <a href="#fields">Πεδία δράσης</a>
+            <a class="nav-cta" href="mailto:hello@codebreakers.gr">Μίλα μας <span>↗</span></a>
+        </nav>
+    </header>
 
+    <main>
+        <section class="hero">
+            <div class="eyebrow">ΑΝΕΞΑΡΤΗΤΟ DIGITAL STUDIO / 2026</div>
+            <h1>Σπάμε τα<br><em>δεδομένα.</em></h1>
+            <div class="hero-bottom">
+                <div>
+                    <p class="hero-copy">Σχεδιάζουμε ψηφιακές εμπειρίες για ανθρώπους και οργανισμούς που αρνούνται το
+                        «έτσι γίνεται».</p>
+                    <a class="hero-cta" href="#fields">Δες τι κάνουμε <span>↓</span></a>
+                </div>
+                <div class="hero-stamp">ΑΝΟΙΧΤΟΙ ΓΙΑ<br><strong>ΝΕΕΣ ΙΔΕΕΣ</strong>ΑΠΟ ΤΟ 2018</div>
+            </div>
+        </section>
+        <div class="ticker"><span>● ΝΕΑ ΣΥΝΕΡΓΑΣΙΑ</span> Ψάχνουμε το επόμενο ενδιαφέρον πρόβλημα <span>● ΝΕΑ
+                ΣΥΝΕΡΓΑΣΙΑ</span> Ψάχνουμε το επόμενο ενδιαφέρον πρόβλημα</div>
+
+        <section class="section" id="fields">
+            <div class="section-head">
+                <h2>Όταν η λύση δεν είναι προφανής.</h2>
+                <div class="section-index">01 — 03</div>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <div class="card-number">01 / ΣΤΡΑΤΗΓΙΚΗ</div>
+                    <div>
+                        <h3>Βρίσκουμε το γιατί.</h3>
+                        <p>Μετατρέπουμε τα σύνθετα ερωτήματα σε καθαρές κατευθύνσεις.</p>
+                    </div>
+                    <div class="card-link">ΕΞΕΡΕΥΝΗΣΕ →</div>
+                </article>
+                <article class="card">
+                    <div class="card-number">02 / DESIGN</div>
+                    <div>
+                        <h3>Δίνουμε μορφή.</h3>
+                        <p>Συστήματα και ταυτότητες με χαρακτήρα, όχι άλλη μία ασφαλή λύση.</p>
+                    </div>
+                    <div class="card-link">ΕΞΕΡΕΥΝΗΣΕ →</div>
+                </article>
+                <article class="card">
+                    <div class="card-number">03 / TECHNOLOGY</div>
+                    <div>
+                        <h3>Το κάνουμε αληθινό.</h3>
+                        <p>Κώδικας που λειτουργεί αθόρυβα και κάνει την εμπειρία να ξεχωρίζει.</p>
+                    </div>
+                    <div class="card-link">ΕΞΕΡΕΥΝΗΣΕ →</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section manifesto" id="about">
+            <div>
+                <div class="section-index">02 — 03</div>
+                <h2>Η περιέργεια είναι εργαλείο.</h2>
+            </div>
+            <div>
+                <p>Δεν ξεκινάμε με έτοιμες απαντήσεις. Ξεκινάμε με καλύτερες ερωτήσεις, ακούμε προσεκτικά και χτίζουμε
+                    μόνο ό,τι χρειάζεται.</p>
+                <p>Μικρή ομάδα, μεγάλες εμμονές, μηδενική ανοχή στο περιττό.</p>
+                <div class="principles">
+                    <div class="principle"><b>01</b> ΚΑΘΑΡΗ ΣΚΕΨΗ</div>
+                    <div class="principle"><b>02</b> ΘΑΡΡΑΛΕΟ DESIGN</div>
+                    <div class="principle"><b>03</b> ΑΝΘΡΩΠΙΝΗ ΤΕΧΝΟΛΟΓΙΑ</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer><span>© CODE BREAKERS — ΑΘΗΝΑ / ΠΑΝΤΟΥ</span><span>LET'S MAKE SOMETHING USEFUL ↗</span></footer>
 </body>
 
 </html>]
