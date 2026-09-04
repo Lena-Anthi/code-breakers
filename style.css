@@ -1,6 +1,11 @@
 button {
-  align-items: center;
-  text-align: center;
+  /* align-items: center; */
+  /* text-align: center; */
   margin: auto;
-  color: blueviolet;
+  background-color: rgb(88, 237, 108);
+  color: rgb(168, 83, 52);
+  line-height: 200px;
+  width: 400px;
+  display: block;
+  border-radius: 70px;
 }
