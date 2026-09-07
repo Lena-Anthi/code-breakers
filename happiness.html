@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Τροχός της Τύχης</title>
+    <title>lucky wheel</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
 
@@ -58,7 +58,7 @@
         left: 50%;
         width: 0;
         height: 0;
-        transform: translateX(-50%);
+        transform: translateX(-);
         border-right: 18px solid transparent;
         border-left: 18px solid transparent;
         border-top: 42px solid var(--purple);
@@ -177,26 +177,26 @@
   </head>
   <body>
     <main>
-      <h1>Ο Τροχός της Τύχης</h1>
-      <p class="intro">Γύρισε τον τροχό και βρες λίγη χαρά για σήμερα!</p>
+      <h1>Lucky Wheel</h1>
+      <p class="intro">Spin the wheel</p>
 
       <section class="wheel-area" aria-label="Τροχός της τύχης">
         <div class="pointer" aria-hidden="true"></div>
         <div class="wheel" id="wheel"></div>
         <div class="labels" aria-hidden="true">
-          <span>Χαμόγελο</span>
-          <span>Μουσική</span>
-          <span>Βόλτα</span>
-          <span>Καφές</span>
-          <span>Ξεκούραση</span>
-          <span>Φίλοι</span>
-          <span>Δημιουργία</span>
-          <span>Έκπληξη</span>
+          <span>You deserve happiness too.</span>
+          <span>Don't forget to be kind to yourself.</span>
+          <span>Be proud of how far you've come.</span>
+          <span>You have the power to make today better.</span>
+          <span>Your smile can brighten someone's day.</span>
+          <span>Be present.Be connected.Be you.</span>
+          <span>You are enough just as you are.</span>
+          <span>Spin the wheel again.</span>
         </div>
       </section>
 
-      <button id="spin-button" type="button">Γύρισε τον τροχό</button>
-      <p id="result" aria-live="polite">Τι θα σου φέρει σήμερα;</p>
+      <button id="spin-button" type="button">Spin the wheel!</button>
+      <p id="result" aria-live="polite"></p>
     </main>
 
     <script>
@@ -204,14 +204,14 @@
       const spinButton = document.querySelector("#spin-button");
       const result = document.querySelector("#result");
       const options = [
-        "Χαμόγελο",
-        "Μουσική",
-        "Βόλτα",
-        "Καφές",
-        "Ξεκούραση",
-        "Φίλοι",
-        "Δημιουργία",
-        "Έκπληξη",
+        "You deserve happiness too.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
       ];
       let rotation = 0;
 
@@ -225,10 +225,10 @@
         rotation += extraTurns + targetAngle - (rotation % 360);
         wheel.style.transform = `rotate(${rotation}deg)`;
         spinButton.disabled = true;
-        result.textContent = "Ο τροχός γυρίζει...";
+        result.textContent = "The wheel is spinning...";
 
         window.setTimeout(() => {
-          result.textContent = `Σήμερα διάλεξες: ${options[selectedIndex]}!`;
+          result.textContent = `Today you selected: ${options[selectedIndex]}!`;
           spinButton.disabled = false;
         }, 4100);
       });
