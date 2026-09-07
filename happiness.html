@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Τροχός της Τύχης</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+
+      :root {
+        --pink: #f84b94;
+        --purple: #6c4dd9;
+        --cream: #fff8e8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        color: #302346;
+        background: radial-gradient(circle at top, #fff1f7, #f5f5dc 65%);
+        font-family: "Quicksand", sans-serif;
+      }
+
+      main {
+        width: min(100%, 600px);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        color: var(--pink);
+        font-size: clamp(1.8rem, 6vw, 3rem);
+      }
+
+      .intro {
+        margin: 0 0 22px;
+        font-size: 1.1rem;
+      }
+
+      .wheel-area {
+        position: relative;
+        width: min(86vw, 440px);
+        aspect-ratio: 1;
+        margin: 0 auto 24px;
+      }
+
+      .pointer {
+        position: absolute;
+        z-index: 2;
+        top: -14px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        transform: translateX(-50%);
+        border-right: 18px solid transparent;
+        border-left: 18px solid transparent;
+        border-top: 42px solid var(--purple);
+        filter: drop-shadow(0 3px 2px #0003);
+      }
+
+      .wheel {
+        width: 100%;
+        height: 100%;
+        border: 10px solid var(--cream);
+        border-radius: 50%;
+        background: conic-gradient(
+          #ff7aa9 0deg 45deg,
+          #ffd166 45deg 90deg,
+          #70d6ff 90deg 135deg,
+          #b8e986 135deg 180deg,
+          #c8a2ff 180deg 225deg,
+          #ff9f68 225deg 270deg,
+          #7de2d1 270deg 315deg,
+          #f7aef8 315deg 360deg
+        );
+        box-shadow:
+          0 10px 24px #6c4dd933,
+          0 0 0 5px var(--purple);
+        transition: transform 4s cubic-bezier(0.12, 0.8, 0.18, 1);
+      }
+
+      .wheel::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 64px;
+        height: 64px;
+        transform: translate(-50%, -50%);
+        border: 7px solid var(--cream);
+        border-radius: 50%;
+        background: var(--purple);
+        box-shadow: 0 2px 5px #0003;
+      }
+
+      .labels {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+
+      .labels span {
+        position: absolute;
+        width: 90px;
+        color: #302346;
+        font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .labels span:nth-child(1) {
+        transform: translateY(-145px);
+      }
+      .labels span:nth-child(2) {
+        transform: translate(103px, -103px);
+      }
+      .labels span:nth-child(3) {
+        transform: translate(145px);
+      }
+      .labels span:nth-child(4) {
+        transform: translate(103px, 103px);
+      }
+      .labels span:nth-child(5) {
+        transform: translateY(145px);
+      }
+      .labels span:nth-child(6) {
+        transform: translate(-103px, 103px);
+      }
+      .labels span:nth-child(7) {
+        transform: translate(-145px);
+      }
+      .labels span:nth-child(8) {
+        transform: translate(-103px, -103px);
+      }
+
+      button {
+        border: 0;
+        border-radius: 999px;
+        padding: 15px 28px;
+        color: white;
+        background: var(--pink);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 5px 0 #c73370;
+      }
+
+      button:hover {
+        background: #e33d83;
+      }
+      button:active {
+        transform: translateY(3px);
+        box-shadow: 0 2px 0 #c73370;
+      }
+      button:disabled {
+        cursor: wait;
+        opacity: 0.7;
+      }
+
+      #result {
+        min-height: 28px;
+        margin: 22px 0 0;
+        color: var(--purple);
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Ο Τροχός της Τύχης</h1>
+      <p class="intro">Γύρισε τον τροχό και βρες λίγη χαρά για σήμερα!</p>
+
+      <section class="wheel-area" aria-label="Τροχός της τύχης">
+        <div class="pointer" aria-hidden="true"></div>
+        <div class="wheel" id="wheel"></div>
+        <div class="labels" aria-hidden="true">
+          <span>Χαμόγελο</span>
+          <span>Μουσική</span>
+          <span>Βόλτα</span>
+          <span>Καφές</span>
+          <span>Ξεκούραση</span>
+          <span>Φίλοι</span>
+          <span>Δημιουργία</span>
+          <span>Έκπληξη</span>
+        </div>
+      </section>
+
+      <button id="spin-button" type="button">Γύρισε τον τροχό</button>
+      <p id="result" aria-live="polite">Τι θα σου φέρει σήμερα;</p>
+    </main>
+
+    <script>
+      const wheel = document.querySelector("#wheel");
+      const spinButton = document.querySelector("#spin-button");
+      const result = document.querySelector("#result");
+      const options = [
+        "Χαμόγελο",
+        "Μουσική",
+        "Βόλτα",
+        "Καφές",
+        "Ξεκούραση",
+        "Φίλοι",
+        "Δημιουργία",
+        "Έκπληξη",
+      ];
+      let rotation = 0;
+
+      spinButton.addEventListener("click", () => {
+        const selectedIndex = Math.floor(Math.random() * options.length);
+        const segmentSize = 360 / options.length;
+        const targetAngle =
+          360 - (selectedIndex * segmentSize + segmentSize / 2);
+        const extraTurns = 5 * 360;
+
+        rotation += extraTurns + targetAngle - (rotation % 360);
+        wheel.style.transform = `rotate(${rotation}deg)`;
+        spinButton.disabled = true;
+        result.textContent = "Ο τροχός γυρίζει...";
+
+        window.setTimeout(() => {
+          result.textContent = `Σήμερα διάλεξες: ${options[selectedIndex]}!`;
+          spinButton.disabled = false;
+        }, 4100);
+      });
+    </script>
+  </body>
+</html>
