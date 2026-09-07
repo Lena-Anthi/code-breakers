@@ -8,7 +8,7 @@ button {
   display: block;
   font-size: large;
   border-radius: 70px;
-  font-family: 
+  font-family: "Quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
   cursor: pointer;
@@ -17,6 +17,7 @@ button {
 h1 {
   text-align: center;
   color: rgb(250, 39, 152);
+  font-family: "Quicksand", sans-serif;
 }
 body {
   min-height: 100vh;
