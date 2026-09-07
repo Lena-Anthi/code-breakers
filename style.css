@@ -1,19 +1,36 @@
 button {
-  /* align-items: center; */
-  /* text-align: center; */
   margin: auto;
-  background-color: rgb(88, 237, 108);
-  color: rgb(168, 83, 52);
+  background-color: rgb(250, 75, 148);
+  color: rgb(255, 253, 253);
   line-height: 200px;
   width: 400px;
+  height: 200px;
   display: block;
-  border-radius: 70px;
   font-size: large;
-  font-family: "Gothic A1", sans-serif;
+  border-radius: 70px;
+  font-family: "Press Start 2P";
   font-weight: 400;
   font-style: normal;
+  cursor: pointer;
 }
+
 h1 {
   text-align: center;
-  color: #110a01;
+  color: rgb(250, 39, 152);
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  background-image: url("");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-color: #f5f5dc;
 }
