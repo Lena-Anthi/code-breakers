@@ -1,16 +1,16 @@
 button {
   margin: auto;
-  background-color: #fa2798;
-  color: rgb(255, 253, 253);
-  line-height: 200px;
-  width: 400px;
-  height: 200px;
+  background-color: #e33d83;
+  color: white;
+  line-height: 100px;
+  width: 350px;
+  height: 150px;
   display: block;
-  font-size: large;
-  border-radius: 70px;
-  font-family: "Quicksand", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  font-size: 30px;
+  border-radius: 100px;
+  font-family: "Comic Relief", system-ui;
+  font-weight: 700;
+  box-shadow: 0 5px 20px rgba(227, 47, 143, 0.25);
 }
 
 h1 {
@@ -29,11 +29,26 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-body {
+  background-image: url("website background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  background-color: #f8f8a2;
+}
+
+h1.cloud {
+  position: relative;
+  z-index: 2;
+  width: min(650px, 80vw);
+  margin: 0 0 60px;
+  padding: 45px 55px;
+  box-sizing: border-box;
+  background: white;
+  color: #e33d83;
+  border-radius: 55px;
+  text-align: center;
+  font-family: "Comic Relief", system-ui;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 2;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
