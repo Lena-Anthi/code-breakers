@@ -120,35 +120,35 @@
       }
 
       .labels span:nth-child(1) {
-        transform: translate(56px, -134px);
+        transform: translate(56px, -134px) rotate(22.5deg);
       }
 
       .labels span:nth-child(2) {
-        transform: translate(134px, -56px);
+        transform: translate(134px, -56px) rotate(67.5deg);
       }
 
       .labels span:nth-child(3) {
-        transform: translate(134px, 56px);
+        transform: translate(134px, 56px) rotate(112.5deg);
       }
 
       .labels span:nth-child(4) {
-        transform: translate(56px, 134px);
+        transform: translate(56px, 134px) rotate(157.5deg);
       }
 
       .labels span:nth-child(5) {
-        transform: translate(-56px, 134px);
+        transform: translate(-56px, 134px) rotate(202.5deg);
       }
 
       .labels span:nth-child(6) {
-        transform: translate(-134px, 56px);
+        transform: translate(-134px, 56px) rotate(247.5deg);
       }
 
       .labels span:nth-child(7) {
-        transform: translate(-134px, -56px);
+        transform: translate(-134px, -56px) rotate(292.5deg);
       }
 
       .labels span:nth-child(8) {
-        transform: translate(-56px, -134px);
+        transform: translate(-56px, -134px) rotate(337.5deg);
       }
 
       button {
@@ -309,35 +309,35 @@
         }
 
         .labels span:nth-child(1) {
-          transform: translate(56px, -134px);
+          transform: translate(56px, -134px) rotate(22.5deg);
         }
 
         .labels span:nth-child(2) {
-          transform: translate(134px, -56px);
+          transform: translate(134px, -56px) rotate(67.5deg);
         }
 
         .labels span:nth-child(3) {
-          transform: translate(134px, 56px);
+          transform: translate(134px, 56px) rotate(112.5deg);
         }
 
         .labels span:nth-child(4) {
-          transform: translate(56px, 134px);
+          transform: translate(56px, 134px) rotate(157.5deg);
         }
 
         .labels span:nth-child(5) {
-          transform: translate(-56px, 134px);
+          transform: translate(-56px, 134px) rotate(202.5deg);
         }
 
         .labels span:nth-child(6) {
-          transform: translate(-134px, 56px);
+          transform: translate(-134px, 56px) rotate(247.5deg);
         }
 
         .labels span:nth-child(7) {
-          transform: translate(-134px, -56px);
+          transform: translate(-134px, -56px) rotate(292.5deg);
         }
 
         .labels span:nth-child(8) {
-          transform: translate(-56px, -134px);
+          transform: translate(-56px, -134px) rotate(337.5deg);
         }
 
         button {
@@ -381,14 +381,14 @@
         <h1>Lucky Wheel</h1>
         <p class="intro">Spin the wheel</p>
 
-        <section class="wheel-area" aria-label="Τροχός της τύχης">
+        <section class="wheel-area" aria-label="Lucky wheel">
           <div class="pointer" aria-hidden="true"></div>
           <div class="wheel" id="wheel"></div>
           <div class="labels" aria-hidden="true">
             <span>You deserve happiness too.</span>
-            <span>Don't forget to be kind to yourself.</span>
             <span>Be proud of how far you've come.</span>
-            <span>You have the power to make today better.</span>
+            <span>You have the power to make today better. </span>
+            <span>Don't forget to be kind to yourself.</span>
             <span>Your smile can brighten someone's day.</span>
             <span>Be present.Be connected.Be you.</span>
             <span>You are enough just as you are.</span>
@@ -406,15 +406,16 @@
         const spinButton = document.querySelector("#spin-button");
         const result = document.querySelector("#result");
         const options = [
-          "You deserve happiness too.",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
+          "You deserve happiness too",
+          "Be proud of how far you've come",
+          "You have the power to make today better",
+          "Don't forget to be kind to yourself",
+          "Your smile can brighten someone's day",
+          "Be present. Be connected. Be you",
+          "You are enough just as you are",
+          "Spin the wheel again",
         ];
+
         let rotation = 0;
 
         spinButton.addEventListener("click", () => {
